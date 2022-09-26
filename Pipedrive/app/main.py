@@ -2,6 +2,7 @@ from fastapi import Depends, FastAPI
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from healthcheck import HealthCheck
 from typing import Any, Dict
+from starlette.responses import Response
 from .core import db
 from .crud.save_data import SaveData
 from .core.config import USER_WEBHOOK, PASSWORD_WEBHOOK
@@ -35,6 +36,11 @@ def activity(request: Dict[Any,Any], credentials: HTTPBasicCredentials = Depends
         db.Db.disconnect(cur, conn)
 
     return request
+
+@app.get("/health-check/", include_in_schema=False)
+def healthcheck():
+    message, status_code, headers = health.run()
+    return Response(content=message, status_code=status_code, headers=headers)
 
 if __name__ == "__main__":
     import uvicorn
