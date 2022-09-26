@@ -1,0 +1,56 @@
+from pydantic import BaseModel
+from datetime import datetime
+
+class DbModelMetrics(BaseModel):
+    deal_id: str = None
+    deal_name: str = None
+    age: int = None
+    status: str = None
+    stage_id: str = None
+    action: str = None
+    installments: int = None
+    owner: str = None
+    pipeline_id: str = None
+    add_time: datetime = None
+    update_time: datetime = None
+    utm_term: str = None
+    utm_source: str = None
+    utm_medium: str = None
+    utm_campaign: str = None
+    utm_content: str = None
+    fonte_lead: str = None
+    subdominio_conversao: str = None
+    valor_pretendido: float = None
+    valor_aprovado: float = None
+    valor_liq_liberado: float = None
+    carencia_mensal: float = None
+    garantia: str = None
+    renda_mensal: float = None
+    divida_scr_prejuizo: float = None
+    divida_scr_atrasada: float = None
+    divida_rural_scr: float = None
+    divida_total_scr: float = None
+    cultura: str = None
+    atividade_rural: str = None
+    motivo_perda: str = None
+    score_bvs: int = None
+    aprovacao_scr: str = None
+    inscricao_produtor_ativa: str = None
+    area_propria: float = None
+    imoveis_proprios: int = None
+    autorizacao_scr: str = None
+    op_credito_ativo: str = None
+    tempo_experiencia: int = None
+    segmento: str = None
+    restricao_credito: str = None
+    juros: float = None
+    uf: str = None                  
+    genero: str = None             
+    estado_solicitacao: str = None  
+    won_time: datetime = None
+    criador: str = None                  
+    op_endividamento_rural: str = None
+    nr_contato: str = None          
+    email: str = None               
+    cpf: str = None                
+    cidade_solicitacao: str = None

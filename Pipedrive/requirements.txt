@@ -1,0 +1,10 @@
+dictfilter==2.1
+fastapi==0.70.1
+datetime
+requests
+pydantic==1.8.2
+python-dotenv==0.19.2
+psycopg2==2.9.3
+pathlib
+envkey==1.3.2
+
