@@ -3,6 +3,7 @@ import os
 import envkey
 from pathlib import Path
 
+# Uploading credentials from .env
 dotenv_path = Path('.env')
 load_dotenv(find_dotenv(raise_error_if_not_found=False))
 
@@ -12,12 +13,12 @@ def get_environment(name: str) -> str:
 
     return os.get_environment(name)
 
-# Acesso para o Pipedrive
+# Access to Pipedrive
 API_TOKEN = os.getenv('API_TOKEN')
-USER_WEBHOOK = get_environment('USER_WEBHOOK')
-PASSWORD_WEBHOOK = get_environment('PASSWORD_WEBHOOK')
+USER_WEBHOOK = os.getenv('USER_WEBHOOK')
+PASSWORD_WEBHOOK = os.getenv('PASSWORD_WEBHOOK')
 
-# Acesso para o Postgres
+# Access to Postgres
 DBNAME = os.getenv('DBNAME')
 USER = os.getenv('USER')
 PASSWORD = os.getenv('PASSWORD')
