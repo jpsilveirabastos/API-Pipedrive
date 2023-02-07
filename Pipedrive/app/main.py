@@ -11,7 +11,8 @@ security = HTTPBasic()
 health = HealthCheck()
 app = FastAPI()
 
-@app.post("/webhook/")
+# Route to receive updated data for each stage the lead have been to
+@app.post("/stage/")
 def webhook(request: Dict[Any,Any], credentials: HTTPBasicCredentials = Depends(security)):
 
     if (credentials.username != USER_WEBHOOK) or (credentials.password != PASSWORD_WEBHOOK):
@@ -25,8 +26,10 @@ def webhook(request: Dict[Any,Any], credentials: HTTPBasicCredentials = Depends(
 
     return request
 
+# Route to receive all the activities that owners have made
 @app.post("/activity/")
 def activity(request: Dict[Any,Any], credentials: HTTPBasicCredentials = Depends(security)):
+    
     if (credentials.username != USER_WEBHOOK) or (credentials.password != PASSWORD_WEBHOOK):
         return 'Authentication failed'
         
@@ -37,6 +40,7 @@ def activity(request: Dict[Any,Any], credentials: HTTPBasicCredentials = Depends
 
     return request
 
+# Route to check if the API is responding
 @app.get("/health-check/", include_in_schema=False)
 def healthcheck():
     message, status_code, headers = health.run()
