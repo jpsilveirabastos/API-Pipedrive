@@ -8,7 +8,7 @@ from ..core.config import API_TOKEN
 class GetData:
 
     def __api_data(deal) -> any:
-        '''Obter dados provenientes da API e retorná-los'''
+        '''Get data from Pipedrive API and return it'''
 
         token = {
             'api_token': API_TOKEN
@@ -23,7 +23,7 @@ class GetData:
 
     @classmethod
     def get_data(self, request) -> Dict:
-        '''Obter dados provenientes do Webhook e retornar um dicionário'''
+        '''Get data coming from Webhook and return a dictionary'''
 
         deal_id =                  request['current'].get('id')
         deal_name =                request['current'].get('title')                                     
@@ -77,7 +77,8 @@ class GetData:
         email =                    request['current'].get('c79ef1cfeb9a6c3ff0d9d38694e7d9449f3d75c2')
         cpf =                      request['current'].get('c88631d6bdeeaf470038008742ef1a0aa104fc9e')
         cidade_solicitacao =       request['current'].get('a8f47a5db3aefcb78d0cd31cb132fa376626aec7')
-
+        
+        # Doing some processing on the data 
         utm_source = treatment('utm_source',utm_source)
         fonte_lead = treatment('fonte_lead',fonte_lead)
         subdominio_conversao = treatment('subdominio_conversao',subdominio_conversao)
@@ -87,7 +88,8 @@ class GetData:
         update_time = treatment('update_time',update_time)
         won_time = treatment('won_time',won_time)
         cpf = treatment('cpf',cpf)
-
+        
+        # Instantiate the DB class and saving in a dictionary
         modelo = dbmodel.DbModelMetrics(deal_id=deal_id,deal_name=deal_name,age=age,status=status,stage_id=stage_id,action=action, \
             installments=installments,owner=owner,pipeline_id=pipeline_id,add_time=add_time,update_time=update_time,utm_term=utm_term, \
             utm_source=utm_source,utm_medium=utm_medium,utm_campaign=utm_campaign,utm_content=utm_content,fonte_lead=fonte_lead, \
@@ -101,7 +103,7 @@ class GetData:
             email=email,cpf=cpf,cidade_solicitacao=cidade_solicitacao)
 
         dict_metrics = modelo.dict()
-
+        
         if status != 'open':
             get_content = self.__api_data(deal_id)
             stages = get_content['data']['stay_in_pipeline_stages']['times_in_stages']
