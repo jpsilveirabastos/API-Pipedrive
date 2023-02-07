@@ -6,7 +6,7 @@ import json
 class SaveData:
 
     def __init__(self, cur, conn, table_m = 'activity_comercial'):
-        # Initializing the object's attributes
+        '''Initializing the object's attributes'''
         self.api_token = API_TOKEN # To connect with Pipedrive
         self.conn = conn # To connect with Postgres
         self.cur = cur # The cursor from Postgres
