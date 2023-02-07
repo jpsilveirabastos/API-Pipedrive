@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 
+# The model used to save the data in Postgres
 class DbModelMetrics(BaseModel):
     deal_id: str = None
     deal_name: str = None
