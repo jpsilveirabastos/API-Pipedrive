@@ -1,2 +1,2 @@
 # API-Pipedrive
-API para receber dados de um webhook do Pipedrive (CRM) e armazená-los no banco de dados relacional (PostgreSQL)
+API was made to receive data from a Pipedrive webhook (CRM) and store it in the relational database (PostgreSQL)
