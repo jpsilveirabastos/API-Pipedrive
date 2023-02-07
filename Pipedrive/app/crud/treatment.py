@@ -2,7 +2,7 @@ import re
 from datetime import datetime, timedelta
 
 def treatment(_type, value) -> any:
-    '''Tratar os dados e retornar seu valor'''
+    '''Treat the data and return its value'''
     if value == None:
         pass
     elif value == '':
